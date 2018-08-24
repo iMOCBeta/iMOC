@@ -1,0 +1,202 @@
+{UTF-8}
+cambio de expectativas de compra=
+	(demanda normal-expectativa comprar limonada)/tiempo aproximado para hacer limonada
+	~	
+	~		|
+
+cobertura de limonada=
+	2
+	~	
+	~		|
+
+demanda normal=
+	20+step(paso altura,paso del tiempo)
+	~	
+	~		|
+
+deseo de aumentar la limonada=
+	cobertura de limonada*expectativa comprar limonada
+	~	
+	~		|
+
+deseo de estar listo=
+	tabla de deseo de estar listo(proporcion de suplir el deseo de limonada)
+	~	
+	~		|
+
+efecto de demanda y suplir venta=
+	tabla de radio de demanda y suplir(proporcion de suplir el deseo de limonada)
+	~	
+	~		|
+
+expectativa comprar limonada= INTEG (
+	cambio de expectativas de compra,
+		inicial expectativas para la venta)
+	~	
+	~		|
+
+inicial de limonadas listas=
+	demanda normal*cobertura de limonada
+	~	
+	~		|
+
+inicial expectativas para la venta=
+	demanda normal
+	~	
+	~		|
+
+limonada terminada= INTEG (
+	preparar limonada-venta de limonada,
+		inicial de limonadas listas)
+	~	
+	~		|
+
+paso altura=
+	1
+	~	
+	~		|
+
+paso del tiempo=
+	1
+	~	
+	~		|
+
+preparar limonada=
+	deseo de estar listo*expectativa comprar limonada
+	~	
+	~		|
+
+proporcion de suplir el deseo de limonada=
+	deseo de aumentar la limonada/limonada terminada
+	~	
+	~		|
+
+tabla de deseo de estar listo(
+	[(0,0)-(10,10)],(0,0.05),(1,1),(2,2),(2.5,2.4),(3,2.8),(3.5,3),(4,3))
+	~	
+	~		|
+
+tabla de radio de demanda y suplir(
+	[(0,0)-(10,10)],(0.33,3),(0.5,2),(1,1),(2,0.5),(3,0.33),(5,0.2))
+	~	
+	~		|
+
+tiempo aproximado para hacer limonada=
+	1
+	~	
+	~		|
+
+venta de limonada=
+	efecto de demanda y suplir venta*demanda normal
+	~	
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 8
+	~	Hour
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Hour
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP
+	~	Hour [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 0.0625
+	~	Hour [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,100,0
+10,1,limonada terminada,325,202,40,20,3,3,0,0,0,0,0,0
+12,2,48,136,198,10,8,0,3,0,0,-1,0,0,0
+1,3,5,1,4,0,0,22,0,0,0,-1--1--1,,1|(253,198)|
+1,4,5,2,100,0,0,22,0,0,0,-1--1--1,,1|(177,198)|
+11,5,48,215,198,6,8,34,3,0,0,1,0,0,0
+10,6,preparar limonada,215,217,57,11,40,3,0,0,-1,0,0,0
+12,7,48,611,201,10,8,0,3,0,0,-1,0,0,0
+1,8,10,7,4,0,0,22,0,0,0,-1--1--1,,1|(545,201)|
+1,9,10,1,100,0,0,22,0,0,0,-1--1--1,,1|(421,201)|
+11,10,48,483,201,6,8,34,3,0,0,1,0,0,0
+10,11,venta de limonada,483,220,57,11,40,3,0,0,-1,0,0,0
+10,12,expectativa comprar limonada,382,343,53,23,3,131,0,0,0,0,0,0
+12,13,48,597,337,10,8,0,3,0,0,-1,0,0,0
+1,14,16,12,4,0,0,22,0,0,0,-1--1--1,,1|(470,339)|
+1,15,16,13,100,0,0,22,0,0,0,-1--1--1,,1|(552,339)|
+11,16,48,512,339,6,8,34,3,0,0,1,0,0,0
+10,17,cambio de expectativas de compra,512,366,74,19,40,3,0,0,-1,0,0,0
+10,18,proporcion de suplir el deseo de limonada,241,73,72,19,8,3,0,0,0,0,0,0
+10,19,efecto de demanda y suplir venta,508,67,67,19,8,3,0,0,0,0,0,0
+10,20,tabla de radio de demanda y suplir,373,143,54,19,8,3,0,0,0,0,0,0
+10,21,demanda normal,667,263,52,11,8,3,0,0,0,0,0,0
+10,22,paso del tiempo,444,263,50,11,8,3,0,0,0,0,0,0
+10,23,inicial de limonadas listas,187,507,46,22,3,131,0,0,0,0,0,0
+10,24,inicial expectativas para la venta,505,496,59,22,3,131,0,0,0,0,0,0
+10,25,tiempo aproximado para hacer limonada,652,451,63,25,3,131,0,0,0,0,0,0
+1,26,1,18,1,0,0,0,0,64,0,-1--1--1,,1|(284,156)|
+1,27,18,19,1,0,0,0,0,64,0,-1--1--1,,1|(368,45)|
+1,28,19,11,1,0,0,0,0,64,0,-1--1--1,,1|(561,135)|
+1,29,20,19,1,0,0,0,0,64,0,-1--1--1,,1|(403,94)|
+1,30,21,11,1,0,0,0,0,64,0,-1--1--1,,1|(601,241)|
+1,31,22,21,1,0,0,0,0,64,0,-1--1--1,,1|(516,253)|
+1,32,21,17,1,0,0,0,0,64,0,-1--1--1,,1|(633,315)|
+10,33,deseo de aumentar la limonada,217,442,40,20,3,3,0,0,0,0,0,0
+1,34,33,18,1,0,0,0,0,64,0,-1--1--1,,1|(70,391)|
+1,35,12,33,1,0,0,0,0,64,0,-1--1--1,,1|(298,417)|
+10,36,cobertura de limonada,258,358,41,19,8,3,0,0,0,0,0,0
+1,37,36,33,0,0,0,0,0,64,0,-1--1--1,,1|(240,393)|
+1,38,12,6,1,0,0,0,0,64,0,-1--1--1,,1|(354,312)|
+10,39,demanda normal,337,484,62,14,8,130,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,40,inicial expectativas para la venta,418,428,74,25,8,130,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,41,39,23,1,0,0,0,0,64,0,-1--1--1,,1|(267,483)|
+1,42,39,24,1,0,0,0,0,64,0,-1--1--1,,1|(393,491)|
+1,43,40,12,0,0,0,0,0,64,1,-1--1--1,,1|(402,390)|
+10,44,proporcion de suplir el deseo de limonada,128,364,77,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,45,cobertura de limonada,67,453,46,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,46,45,23,1,0,0,0,0,64,0,-1--1--1,,1|(121,510)|
+1,47,25,17,1,0,0,0,0,64,0,-1--1--1,,1|(598,393)|
+10,48,paso altura,455,298,35,11,8,3,0,0,0,0,0,0
+1,49,48,21,1,0,0,0,0,64,0,-1--1--1,,1|(603,286)|
+1,50,12,17,1,0,0,0,0,64,0,-1--1--1,,1|(436,394)|
+10,51,deseo de estar listo,79,266,47,19,8,3,0,0,0,0,0,0
+1,52,44,51,1,0,0,0,0,64,0,-1--1--1,,1|(66,331)|
+1,53,51,6,0,0,0,0,0,64,0,-1--1--1,,1|(148,241)|
+10,54,tabla de deseo de estar listo,237,302,57,19,8,3,0,0,0,0,0,0
+1,55,54,51,0,0,0,0,0,64,0,-1--1--1,,1|(159,284)|
+1,56,23,1,1,0,0,0,0,64,1,-1--1--1,,1|(287,398)|
+///---\\\
+:L<%^E!@
+1:Current.vdf
+9:Current
+23:0
+15:0,0,0,0,0,0
+19:100,0
+27:2,
+34:0,
+4:Time
+5:limonada terminada
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:5
+41:0
+42:0
+24:0
+25:8
+26:8
